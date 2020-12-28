@@ -74,7 +74,7 @@ class App
         return $this->invoke($controllerName, $this->method, $this->args);
       }
     } else {
-      return $this->internalServerError();
+      return $this->invoke(APP_NAMESPACE . 'FilmsController', 'index', $this->args);
     }
   }
 

@@ -4,6 +4,7 @@
 <script src="<?=PUBLIC_ROOT?>js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
 <script>
     $(document).ready(function() {
+        var root = window.location.origin + <?=PROJECT_ROOT?> + 'films/';
         var table = $('#stats-table').DataTable({
             processing: true,
             serverSide: true,
@@ -26,7 +27,7 @@
                 }
             ],
             ajax: {
-                url: "getFilms",
+                url: root + "getFilms",
             },
             columns: [
                 {data: 'id', name: 'id', searchable: false, orderable: true},
@@ -51,7 +52,7 @@
 
         $('.btn-delete-all').on('click', function(){
             $.ajax({
-                url: "deleteFilms",
+                url: root + "deleteFilms",
                 success: function () {
                     table.ajax.reload();
                 }
@@ -60,7 +61,7 @@
 
         $(document).on('click', '.btn-delete', function(){
             $.ajax({
-                url: "deleteFilmById",
+                url: root + "deleteFilmById",
                 data: {
                     id : this.id
                 },
@@ -76,7 +77,7 @@
             var formData = new FormData();
             formData.append('file', file);
             $.ajax({
-                url: "uploadFilms",
+                url: root + "uploadFilms",
                 type: "POST",
                 data: formData,
                 contentType: false,
@@ -94,7 +95,7 @@
 
         $('.btn-save').on('click', function () {
             $.ajax({
-                url: "addFilm",
+                url: root + "addFilm",
                 data: {
                     title : $('.title').val(),
                     release_year : $('.release-year').val(),
