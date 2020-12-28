@@ -67,6 +67,9 @@ class FilmsController extends Controller
   public function uploadFilms(){
     $upload_file  = $this->request->data("file");
     if(!empty($upload_file['name']) && !empty($upload_file['tmp_name'])){
+      if (!file_exists(UPLOAD_PATH)) {
+        mkdir(UPLOAD_PATH, 0777, true);
+      }
       $path = UPLOAD_PATH . $upload_file['name'];
       $data = file_get_contents($upload_file['tmp_name']);
       $check = file_put_contents($path, $data);
