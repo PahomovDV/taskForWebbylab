@@ -4,7 +4,7 @@
 <script src="<?=PUBLIC_ROOT?>js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
 <script>
     $(document).ready(function() {
-        var root = window.location.origin + <?=PROJECT_ROOT?> + 'films/';
+        var root = window.location.origin + '<?=PROJECT_ROOT?>' + 'films/';
         var table = $('#stats-table').DataTable({
             processing: true,
             serverSide: true,
