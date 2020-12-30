@@ -7,7 +7,7 @@ use App\Core\Model;
 
 class FilmsModel extends Model
 {
-  public $table = 'films';
+  public $table = 'Films';
 
   public $fill = [
     'title', 'release_year', 'format', 'stars'
