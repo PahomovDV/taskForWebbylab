@@ -7,7 +7,7 @@ use App\Core\Model;
 
 class FilmsModel extends Model
 {
-  public $table = 'Films';
+  public $table = 'films';
 
   public $fill = [
     'title', 'release_year', 'format', 'stars'
@@ -23,8 +23,8 @@ class FilmsModel extends Model
     return $result;
   }
 
-  public function getAllFilms($ordering, $start, $length){
-    $query = "SELECT * FROM " . $this->table . " ORDER BY ". $ordering[0] ." ". $ordering[1] . " LIMIT ". $start .",". $length;
+  public function getAllFilms($ordering, $start = 0, $length = 10){
+    $query = "SELECT * FROM " . $this->table . " ORDER BY " . $ordering[0] . " " . $ordering[1] . " LIMIT " . $start . "," . $length;
     $this->statement = $this->connection->prepare($query);
     $this->execute();
     $result = $this->fetchAllAssociative();

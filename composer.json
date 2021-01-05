@@ -13,6 +13,7 @@
   "require": {
     "ext-pdo": "*",
     "ext-json": "*",
-    "ext-zip": "*"
+    "ext-zip": "*",
+    "ext-apache": "*"
   }
 }

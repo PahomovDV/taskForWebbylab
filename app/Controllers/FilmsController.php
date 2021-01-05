@@ -28,11 +28,15 @@ class FilmsController extends Controller
 
   public function getFilms(){
     $search = $this->request->query('search');
-    $start = $this->request->query('start');
-    $length = $this->request->query('length');
+    $start = $this->request->query('start') ?? 0;
+    $length = $this->request->query('length') ?? 10;
     $order = $this->request->query('order');
     $columns = $this->request->query('columns');
-    $ordering = [$columns[$order[0]['column']]['name'], $order[0]['dir']];
+    if(!empty($order)){
+      $ordering = [$columns[$order[0]['column']]['name'], $order[0]['dir']];
+    } else {
+      $ordering = ['title', 'desc'];
+    }
     $iTotalRecords = (new FilmsModel())->countAll();
     if($iTotalRecords === false){
       (new FilmsModel())->tableMigration();
@@ -81,9 +85,9 @@ class FilmsController extends Controller
       $i = 0;
       foreach ($pre_array as $pre_value){
         if(!empty($pre_value)){
-          $value = explode(': ', $pre_value);
-          $key = strtolower(str_replace(' ', '_', $value[0]));
-          $array[$key] = $value[1];
+          $key = str_replace(' ', '_', stristr($pre_value, ':', true));
+          $value = trim(substr(stristr($pre_value, ': '), 1));
+          $array[strtolower($key)] = $value;
         }
         if(!empty($array['title']) && !empty($array['release_year']) && !empty($array['format']) && !empty($array['stars'])){
           (new FilmsModel())->create($array);

@@ -47,7 +47,6 @@ class Request
    * @param array $config user provided config
    */
   public function __construct($config = []){
-
     $this->data    = $this->mergeData($_POST, $_FILES);
     $this->query   = $_GET;
     $this->params += isset($config["params"])? $config["params"]: [];
@@ -151,15 +150,6 @@ class Request
   }
 
   /**
-   * get content length
-   *
-   * @return integer
-   */
-  public function contentLength(){
-    return (int)$_SERVER['CONTENT_LENGTH'];
-  }
-
-  /**
    * get the current uri of the request
    *
    * @return string|null
@@ -175,36 +165,6 @@ class Request
    */
   public function name(){
     return isset($_SERVER['SERVER_NAME'])? $_SERVER['SERVER_NAME']: null;
-  }
-
-  /**
-   * Get the referer of this request.
-   *
-   * @return string|null
-   */
-  public function referer(){
-    return isset($_SERVER['HTTP_REFERER'])? $_SERVER['HTTP_REFERER']: null;
-  }
-
-  /**
-   * get the client IP addresses.
-   *
-   * 'REMOTE_ADDR' is the most trusted one,
-   * otherwise you can use HTTP_CLIENT_IP, or HTTP_X_FORWARDED_FOR.
-   *
-   * @return string|null
-   */
-  public function clientIp(){
-    return isset($_SERVER['REMOTE_ADDR'])? $_SERVER['REMOTE_ADDR']: null;
-  }
-
-  /**
-   * get the contents of the User Agent
-   *
-   * @return string|null
-   */
-  public function userAgent(){
-    return isset($_SERVER['HTTP_USER_AGENT'])? $_SERVER['HTTP_USER_AGENT']: null;
   }
 
   /**

@@ -50,7 +50,6 @@ class App
   }
 
   public function run(){
-
     // split the requested URL
     $this->splitUrl();
     if(!self::isControllerValid($this->controller)){
@@ -96,7 +95,6 @@ class App
     } else {
       $response = $this->controller->{$method}();
     }
-
     if ($response instanceof Response) {
       return $response->send();
     }
