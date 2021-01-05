@@ -10,6 +10,7 @@ if(!function_exists('apache_get_modules')){
   }
 }
 
+
 define('PUBLIC_ROOT', $app->request->root());
 define('PROJECT_ROOT', $app->request->getBaseUrl());
 

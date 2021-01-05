@@ -35,7 +35,7 @@ class DB
   {
     include_once BASE_DIR . '/config/db.php';
 
-    $result['dsn'] = DB_TYPE . ":host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
+    $result['dsn'] = DB_TYPE . ":host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET . ";port=" . DB_PORT;
     $result['username'] = DB_USERNAME;
     $result['password'] = DB_PASSWORD;
 
