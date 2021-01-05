@@ -32,7 +32,7 @@ class FilmsModel extends Model
   }
 
   public function tableMigration(){
-    $query = "CREATE TABLE IF NOT EXISTS `Films` (
+    $query = "CREATE TABLE IF NOT EXISTS `films` (
     `id` int(11) unsigned NOT NULL auto_increment,
     `title` varchar(100) NULL,
     `release_year` int NULL,
