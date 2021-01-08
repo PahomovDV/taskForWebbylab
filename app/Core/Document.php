@@ -83,6 +83,19 @@ class Document
   }
 
   /**
+   * Read txt file.
+   *
+   * @return string|string[]|null
+   */
+
+  private function readTxt(){
+    $handle  = fopen($this->filename, 'r');
+    $contents = fread($handle, filesize($this->filename));
+    fclose($handle);
+    return $contents;
+  }
+
+  /**
    * Convert document to text.
    *
    * @return string|string[]|null
@@ -97,11 +110,13 @@ class Document
 
     $fileArray = pathinfo($this->filename);
     $file_ext = $fileArray['extension'];
-    if ($file_ext == "doc" || $file_ext == "docx" || $file_ext == "xlsx" || $file_ext == "pptx") {
+    if ($file_ext == "doc" || $file_ext == "docx" || $file_ext == "txt") {
       if ($file_ext == "doc") {
         return $this->readDoc();
       } elseif ($file_ext == "docx") {
         return $this->readDocx();
+      } elseif ($file_ext == "txt") {
+        return $this->readTxt();
       }
     } else {
       return "Invalid File Type";

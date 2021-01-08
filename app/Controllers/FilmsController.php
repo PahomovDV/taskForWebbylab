@@ -54,6 +54,17 @@ class FilmsController extends Controller
     $this->view->renderJson(compact(['data', 'draw', 'iTotalRecords', 'iTotalDisplayRecords']));
   }
 
+  public function findFilm(){
+    $title = $this->request->data('title');
+    $data = (new FilmsModel())->searchFilmByTitle($title);
+    if(!empty($data)){
+      $this->view->renderJson(["true"]);
+    } else {
+      $this->view->renderJson(["false"]);
+    }
+
+  }
+
   public function deleteFilmById(){
     $id = $this->request->query('id');
     $result = (new FilmsModel())->deleteById($id);
@@ -81,7 +92,7 @@ class FilmsController extends Controller
     if(!empty($check) && !empty($path)){
       $document = new Document($path);
       $text = $document->convertToText();
-      $pre_array = explode(PHP_EOL, $text);
+      $pre_array = explode("\n", $text);
       $i = 0;
       foreach ($pre_array as $pre_value){
         if(!empty($pre_value)){

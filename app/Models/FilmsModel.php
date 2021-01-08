@@ -43,4 +43,13 @@ class FilmsModel extends Model
     $result = $this->execute();
     return $result;
   }
+
+  public function searchFilmByTitle($title){
+    $query = "SELECT * FROM " . $this->table . " WHERE title = '" . $title . "'";
+    $this->statement = $this->connection->prepare($query);
+    $this->bindValue(':title', $title);
+    $this->execute();
+    $result = $this->fetchAssociative();
+    return $result;
+  }
 }

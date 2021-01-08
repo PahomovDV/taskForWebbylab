@@ -65,7 +65,6 @@ class View {
     if(file_exists($layoutDir . "header.php")){
       require_once $layoutDir . "header.php";
     }
-
     require_once $filePath  . "" ;
     if(file_exists($layoutDir . "scripts.php")){
       require_once $layoutDir . "scripts.php";
